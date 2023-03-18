@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'reactstrap';
 
-import CentreVertical from '@/components/helpers/CentreVertical';
+import CentreVertical from '@/components/helpers/centreVertical';
 import Head from 'next/head';
 export default function About() {
 
     return (
         <>
             <Head>
-                <title>About Blog Town"</title>
+                <title>About Blog Town</title>
                 <meta name="description" content="Learn more about the author of the blog and the different types of posts that are going to be uploaded" />
             </Head>
             <CentreVertical maxWidth={950}>

@@ -55,14 +55,14 @@ export default function Navigation() {
                     >
                         {isAdmin &&
                             <NavItem>
-                                <NavLink tag={Link} href="/">Dashboard</NavLink>
+                                <NavLink tag={Link} href="/dashboard">Dashboard</NavLink>
                             </NavItem>
                         }
                         <NavItem>
                             <NavLink tag={Link} href="/blogs/categories">Blogs</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink tag={Link} href="/About">About</NavLink>
+                            <NavLink tag={Link} href="/about">About</NavLink>
                         </NavItem>
                     </Nav>
 
