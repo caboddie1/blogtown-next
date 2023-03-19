@@ -15,7 +15,7 @@ export default function Layout({ children }: Props) {
     const [marginClass, setMarginClass] = useState<string>('mt-5');
 
     useEffect(() => {
-        setMarginClass(pathname === '/create-blog' ? '' : 'mt-3 mt-lg-5');
+        setMarginClass(pathname === '/blog/create' ? '' : 'mt-3 mt-lg-5');
     }, [pathname]);
 
     return (

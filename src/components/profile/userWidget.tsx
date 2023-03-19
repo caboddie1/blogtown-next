@@ -4,6 +4,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 're
 import Link from 'next/link';
 
 import { useAuth } from '../../contexts/authContext';
+import styled from '@emotion/styled';
 interface Props {
     user: User;
     handleLogout: React.MouseEventHandler<HTMLButtonElement>;
@@ -21,9 +22,9 @@ export default function UserWidget({ user, handleLogout }: Props) {
     return (
         <Dropdown toggle={handleToggle} isOpen={toggle}>
             <DropdownToggle tag="div">
-                <div className="user-profile">
+                <UserInitial>
                     <h1 className="text-center user-initial">{initial}</h1>
-                </div>
+                </UserInitial>
             </DropdownToggle>
             <DropdownMenu >
                 <DropdownItem header>
@@ -37,13 +38,13 @@ export default function UserWidget({ user, handleLogout }: Props) {
                 }
                 <DropdownItem divider />
                 <DropdownItem>
-                    <Link href="/update-profile">
+                    <Link href="/user/update-profile">
                         Update Profile
                     </Link>
                 </DropdownItem>
                 {isAdmin &&
                     <DropdownItem>
-                        <Link href="create-blog">
+                        <Link href="/blog/create">
                             Create Blog
                         </Link>
                     </DropdownItem>
@@ -59,3 +60,10 @@ export default function UserWidget({ user, handleLogout }: Props) {
     )
 }
 
+const UserInitial = styled.div`
+    background: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+`;

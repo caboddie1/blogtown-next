@@ -27,14 +27,13 @@ export default function Login() {
             setError('');
             await login(emailRef.current?.value, passwordRef.current?.value);
         } catch(e) {
-            console.log(e)
             setLoading(false);
             return setError('Failed to login');
         } finally {
             setLoading(false);
         }
 
-        router.push('/blogs');
+        router.push('/dashboard');
 
     }
 

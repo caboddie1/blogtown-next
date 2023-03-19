@@ -5,35 +5,28 @@ import {
     Navbar, 
     NavbarBrand, 
     NavbarToggler,
-    NavbarText,
     Collapse, 
     Nav, 
     NavItem, 
     NavLink,
-    Button
 } from 'reactstrap';
 import useToggle from '@/hooks/toggle';
 
-//import { useAuth } from '../../contexts/AuthContext';
 import UserWidget from '@/components/profile/userWidget';
-//import useToggle from '../../hooks/toggle';
+import { useAuth } from '@/contexts/authContext';
 
 export default function Navigation() {
 
-    //const { isAdmin, logout, currentUser } = useAuth();
-    const isAdmin = true;
-    const logout = () => null;
-    const currentUser = null;
+    const { isAdmin, logout, currentUser } = useAuth();
     const [isOpen, toggleIsOpen] = useToggle();
     const router = useRouter();
-    //const navigate = useNavigate();
 
     async function handleLogout () {
         try {
             await logout();
         } catch {
         } finally {
-            router.push('/login');
+            router.push('/auth/login');
         }
     }
 
@@ -45,7 +38,7 @@ export default function Navigation() {
                 expand="md"
             >
                 <NavbarToggler onClick={toggleIsOpen}></NavbarToggler>
-                <NavbarBrand href="/blogs/categories" tag={Link}>
+                <NavbarBrand href="/blog/categories" tag={Link}>
                     Blog Town
                 </NavbarBrand>
                 <Collapse navbar isOpen={isOpen}>
@@ -59,7 +52,7 @@ export default function Navigation() {
                             </NavItem>
                         }
                         <NavItem>
-                            <NavLink tag={Link} href="/blogs/categories">Blogs</NavLink>
+                            <NavLink tag={Link} href="/blog/categories">Blogs</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} href="/about">About</NavLink>

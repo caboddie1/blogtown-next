@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import Instagram from '/images/Instagram.png';
 import TikTok from '/images/TikTok.png';
 import Image, { StaticImageData } from 'next/image';
+import ResponsiveImage from '../responsiveImage/responsiveImage';
 
 interface SocialIcons {
     name: string;
@@ -25,27 +26,23 @@ export default function Footer() {
         >
             <Nav>
                 {socialIcons.map(icon => (
-                    <NavItem key={icon.name}>
-                        <SocialImage className="d-inline-block me-3">
-                            <a 
-                                href={icon.url} 
-                                target="_blank" 
-                                rel="noreferrer" 
-                                title={`Visit blogtown on ${icon.name}`}
-                            >
-                                <Image src={icon.image} alt={`${icon.name} logo`} width={50} height={50} />
-                            </a>
-                        </SocialImage>
-                    </NavItem>
+                    <StyledNavItem key={icon.name} className="me-3">
+                        <a 
+                            href={icon.url} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            title={`Visit blogtown on ${icon.name}`}
+                        >
+                            <ResponsiveImage src={icon.image} alt={`${icon.name} logo`} maxHeight={50} />
+                        </a>
+                    </StyledNavItem>
                 ))}
             </Nav>
         </Navbar>
     )
 }
 
-const SocialImage = styled.span`
-
-    img {
-        max-width: 40px;
-    }
-`
+const StyledNavItem = styled(NavItem)(() => ({
+    height: 50,
+    width: 50
+}))

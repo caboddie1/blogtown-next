@@ -1,10 +1,9 @@
 import { markdown, markdownLanguage } from "@codemirror/lang-markdown";
 import { languages } from "@codemirror/language-data";
 import { useState, useMemo } from "react";
-import { oneDark } from '@codemirror/theme-one-dark';
+import { githubDark } from '@uiw/codemirror-theme-github';
 import CodeMirror  from '@uiw/react-codemirror';
 
-import useForm from "@/components/blog/create/form/hooks/form";
 import Form from "../form";
 import type { Tab } from "../controls/tabs";
 import useBreakpoint from "@/hooks/breakpoint";
@@ -36,7 +35,7 @@ export default function useCreateBlog({ onBlogSave, form: { state, dispatch }, f
                 name: 'blogContent',
                 renderContent: () => (
                     <CodeMirror
-                        theme={oneDark}
+                        theme={githubDark}
                         height={'80vh'}
                         value={String(state.content.value || '')}
                         extensions={[markdown({ base: markdownLanguage, codeLanguages: languages })]}

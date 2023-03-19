@@ -1,5 +1,5 @@
 import React from 'react';
-import { collection, doc, getDoc, getDocs, DocumentData, where, orderBy, query, QuerySnapshot, Query } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, DocumentData, where, orderBy, query, QuerySnapshot, Query, limit } from 'firebase/firestore';
 
 import { db } from '../firebase';
 import type { Blog, Tag } from '@/components/blog/types';
@@ -117,6 +117,15 @@ export default function useFetchBlogs() {
         }
     }
 
+    const getBlogByUrl = async (url: string): Promise<FetchBlogs> => {
+        const q = where('url', '==', url);
+
+        const result = query(blogCollectionRef, q, orderBy('created', 'desc'))
+
+        return handleFetchReturn(result)
+
+    }
+
     const getTags = async (): Promise<FetchTag> => {
         try {
             const data = await getDocs(tagCollectionRef);
@@ -150,6 +159,7 @@ export default function useFetchBlogs() {
         getBlogs,
         getBlogsPublished,
         getBlog,
+        getBlogByUrl,
         getTags,
         getIsAdmin,
     };

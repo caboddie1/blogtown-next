@@ -1,0 +1,7 @@
+.blog-item img {
+    max-height: 180px;
+}
+
+.blog-item .image-wrapper {
+    text-align: center;
+}

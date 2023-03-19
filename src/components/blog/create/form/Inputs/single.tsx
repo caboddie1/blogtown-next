@@ -14,7 +14,6 @@ interface Props {
 
 export default function Single({ item: { label, input, name }, dispatch, value }: Props) {
     const onChange = (state: SingleValue<CategoryOption>) => {
-        console.log()
         dispatch({
             type: 'UPDATE_STATE',
             payload: {

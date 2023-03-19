@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm';
-import { Container, Row, Col } from 'reactstrap';
 import {Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-//import {tomorrow} from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ListParser from './listParser';
 
 interface Props {
@@ -33,7 +32,7 @@ export default function ReactDown({ markdown }: Props) {
                             <SyntaxHighlighter
                                 children={String(children).replace(/\n$/, '')}
                                 style={{
-                                    //...tomorrow,
+                                    ...tomorrow,
                                     fontSize: '1.4em'
                                 }}
                                 language={match[1]}
