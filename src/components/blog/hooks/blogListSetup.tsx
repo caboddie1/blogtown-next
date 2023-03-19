@@ -29,8 +29,8 @@ export default function useBlogListSetup() {
 
     // Set the category when params change
     useEffect(() => {
-        setCategory('tech');
-    }, []);
+        setCategory(String(router.query.id || ''));
+    }, [router.query]);
 
     useEffect(() => {
         // When category is false redirect to all

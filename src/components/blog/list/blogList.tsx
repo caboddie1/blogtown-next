@@ -14,9 +14,10 @@ import ResponsiveImage from '@/components/responsiveImage/responsiveImage';
 interface Props {
     blogs: Blog[];
     category?: string;
+    drafts?: boolean;
 }
 
-export default function BlogList({ blogs, category = 'All' }: Props) {
+export default function BlogList({ blogs, category = 'All', drafts = false }: Props) {
 
     const breadcrumbs = useMemo(() => {
         return generateBreadcrumb({ category });
@@ -24,21 +25,18 @@ export default function BlogList({ blogs, category = 'All' }: Props) {
 
     return (
         <>
-            <Head>
-                <title>"Blog Town - Browse Blogs</title>
-                <meta 
-                    name="description" 
-                    content="Get inspired for your next adventure with Blog Town, a blog dedicated to travel and technology. Read destination guides, travel tips, and technology reviews. Start exploring now!" 
-                />
-            </Head>
-            <h1>Welcome to Blogtown</h1>
-            <p>Explore the Latest Blogtown Posts with Our Up-to-Date Blog List</p>
-            <Breadcrumb 
-                {...{
-                    breadcrumbs,
-                    className: 'mb-3'
-                }}
-            />
+            {!drafts &&
+                <>
+                    <h1>Welcome to Blogtown</h1>
+                    <p>Explore the Latest Blogtown Posts with Our Up-to-Date Blog List</p>
+                    <Breadcrumb 
+                        {...{
+                            breadcrumbs,
+                            className: 'mb-3'
+                        }}
+                    />
+                </>
+            }
             <ListGroup className="">
                 {blogs.map((blog: Blog) => (
                     <ListGroupItem 

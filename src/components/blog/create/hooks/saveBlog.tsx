@@ -55,7 +55,6 @@ export default function useSaveBlog() {
     const { currentUser } = useAuth();
     const { getBlog, getTags } = useFetchBlogs();
     const router = useRouter()
-    //const parsed = queryString.parse(location.search);
 
     async function fetchTags() {
         try {

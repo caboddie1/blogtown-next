@@ -12,6 +12,7 @@ import StatTile from '../../components/dashboard/statTile';
 import useFetchBlogs  from '../../hooks/getBlogs';
 import useProtected from '@/hooks/protected';
 import ProtectedRoute from '@/components/protected/protectedRoute';
+import BlogList from '@/components/blog/list/blogList';
 
 interface Props {}
 
@@ -57,7 +58,7 @@ export default function Dashboard(props: Props) {
                                 <Card>
                                     <CardBody style={{ height: '80vh', overflowY: 'scroll' }}>
                                         <h2 className="text-center mb-4">Drafts</h2>
-                                        {/*<BlogList blogs={blogs.filter((b: Blog) => !b.published)} />*/}
+                                        {<BlogList blogs={blogs.filter((b: Blog) => !b.published)} drafts={true} />}
                                     </CardBody>
                                 </Card>
                             </Col>

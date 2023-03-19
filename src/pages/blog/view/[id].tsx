@@ -66,7 +66,7 @@ export default function Blog() {
                                 }}
                                 />
                                 {isAdmin &&
-                                    <Button color="primary" className="mb-3" tag={Link} to={`/create-blog?e=${blog?.id}`}>
+                                    <Button color="primary" className="mb-3" tag={Link} href={`/create-blog?e=${blog?.id}`}>
                                         Edit
                                     </Button>
                                 }

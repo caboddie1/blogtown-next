@@ -6,26 +6,36 @@ import Loading from '@/components/helpers/loading';
 import TikTok from '@/components/socialFeeds/tikTok';
 import useBlogListSetup from '@/components/blog/hooks/blogListSetup';
 import BlogList from '@/components/blog/list/blogList';
+import Head from 'next/head';
 
 export default function BlogListWrapper() {
 
 	const { blogs, error, category, isLoadingBlogs } = useBlogListSetup()
 
     return (
-		<Container>
-			<Loading isLoading={isLoadingBlogs}>
-				{blogs &&
-					<BlogList 
-						blogs={blogs}
-						category={category}
-					/>
-				}
-				{error &&
-					<Error className="p-5 text-center">{error}</Error>
-				}
-			</Loading>
-            <TikTok />
-		</Container>
+		<>
+			<Head>
+                <title>Blog Town - Browse {category} Blogs</title>
+                <meta 
+                    name="description" 
+                    content="Get inspired for your next adventure with Blog Town, a blog dedicated to travel and technology. Read destination guides, travel tips, and technology reviews. Start exploring now!" 
+                />
+            </Head>
+			<Container>
+				<Loading isLoading={isLoadingBlogs}>
+					{blogs &&
+						<BlogList 
+							blogs={blogs}
+							category={category}
+						/>
+					}
+					{error &&
+						<Error className="p-5 text-center">{error}</Error>
+					}
+				</Loading>
+				<TikTok />
+			</Container>
+		</>
     )
 }
 

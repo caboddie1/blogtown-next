@@ -5,6 +5,7 @@ import Loading from '@/components/helpers/loading';
 import CategoriesContent from '@/components/blog/categories/categoriesContent';
 
 import useCategories from '@/hooks/getCategories';
+import Head from 'next/head';
 
 export default function Categories() {
 
@@ -12,14 +13,23 @@ export default function Categories() {
 
 
     return (
-        <Loading
-            isLoading={isLoading}
-        >
-            {state?.data &&
-                <CategoriesContent 
-                    categories={state?.data}
+        <>
+            <Head>
+                <title>Blogtown - View Blog Categories</title>
+                <meta 
+                    name="description"
+                    content="Browse the different categories of blogs that Blogtown has to offer"
                 />
-            }
-        </Loading>
+            </Head>
+            <Loading
+                isLoading={isLoading}
+            >
+                {state?.data &&
+                    <CategoriesContent 
+                        categories={state?.data}
+                    />
+                }
+            </Loading>
+        </>
     )
 }
