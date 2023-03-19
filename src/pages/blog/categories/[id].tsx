@@ -7,8 +7,12 @@ import TikTok from '@/components/socialFeeds/tikTok';
 import useBlogListSetup from '@/components/blog/hooks/blogListSetup';
 import BlogList from '@/components/blog/list/blogList';
 import Head from 'next/head';
+import { FetchCategories, getCategories } from '@/api/categories';
+
+
 
 export default function BlogListWrapper() {
+
 
 	const { blogs, error, category, isLoadingBlogs } = useBlogListSetup()
 

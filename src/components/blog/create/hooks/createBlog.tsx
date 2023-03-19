@@ -28,49 +28,47 @@ export default function useCreateBlog({ onBlogSave, form: { state, dispatch }, f
     const { errors, saveblog } = useValidateBlog({ formItems, onBlogSave, form: { state, dispatch } })
 
 
-    const tabs = useMemo((): Tab[] => {
-        return [
-            {
-                label: 'Content',
-                name: 'blogContent',
-                renderContent: () => (
-                    <CodeMirror
-                        theme={githubDark}
-                        height={'80vh'}
-                        value={String(state.content.value || '')}
-                        extensions={[markdown({ base: markdownLanguage, codeLanguages: languages })]}
-                        onChange={(value: string) => {
-                            //setBlogContent(value);
-                            dispatch({ type: 'UPDATE_STATE', payload: { value, name: 'content', type: 'text' } })
-                        }}
-                    />
-                )
-            },
-            {
-                label: errors.length > 0 ? 'Attributes !' : 'Attributes',
-                name: 'blogAttrs',
-                renderContent: () => (
-                    <Form 
-                        {...{
-                            formItems: formItems.filter(r => r.type === 'form'),
-                            dispatch,
-                            state,
-                            errors,
-                        }} 
-                    />
-                )
-            },
-            ...(breakpoint !== 'sm' ? [] : [{
-                label: 'Preview',
-                name: 'blogPreview',
-                renderContent: () => (
-                    <div className="p-3" style={{ height: '80vh', overflow: 'auto' }}>
-                        <ReactDown markdown={String(state.content.value || '')} />
-                    </div>
-                )
-            }])
-        ]
-    }, [breakpoint, state, errors]);
+    const tabs: Tab[] = [
+        {
+            label: 'Content',
+            name: 'blogContent',
+            renderContent: () => (
+                <CodeMirror
+                    theme={githubDark}
+                    height={'80vh'}
+                    value={String(state.content.value || '')}
+                    extensions={[markdown({ base: markdownLanguage, codeLanguages: languages })]}
+                    onChange={(value: string) => {
+                        //setBlogContent(value);
+                        dispatch({ type: 'UPDATE_STATE', payload: { value, name: 'content', type: 'text' } })
+                    }}
+                />
+            )
+        },
+        {
+            label: errors.length > 0 ? 'Attributes !' : 'Attributes',
+            name: 'blogAttrs',
+            renderContent: () => (
+                <Form 
+                    {...{
+                        formItems: formItems.filter(r => r.type === 'form'),
+                        dispatch,
+                        state,
+                        errors,
+                    }} 
+                />
+            )
+        },
+        ...(breakpoint !== 'sm' ? [] : [{
+            label: 'Preview',
+            name: 'blogPreview',
+            renderContent: () => (
+                <div className="p-3" style={{ height: '80vh', overflow: 'auto' }}>
+                    <ReactDown markdown={String(state.content.value || '')} />
+                </div>
+            )
+        }])
+    ]
 
     return {
         tabs,

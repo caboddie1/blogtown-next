@@ -24,8 +24,8 @@ const Template: ComponentStory<typeof Breadcrumb> = (args) => (
 export const Primary = Template.bind({})
 Primary.args = {
     breadcrumbs: [
-        <span>Categories</span>,
-        <span>Tech</span>,
+        <span key="Categories">Categories</span>,
+        <span key="tech">Tech</span>,
     ]
 }
 

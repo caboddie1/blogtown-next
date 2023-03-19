@@ -40,7 +40,7 @@ export default function Blog() {
                 setError('Error - unable to find blog');
             }
         })();
-    }, []);
+    });
 
     const breadcrumbs = useMemo(() => {
         if (!blog) return []
@@ -66,7 +66,7 @@ export default function Blog() {
                                 }}
                                 />
                                 {isAdmin &&
-                                    <Button color="primary" className="mb-3" tag={Link} href={`/create-blog?e=${blog?.id}`}>
+                                    <Button color="primary" className="mb-3" tag={Link} href={`/blog/create?e=${blog?.id}`}>
                                         Edit
                                     </Button>
                                 }

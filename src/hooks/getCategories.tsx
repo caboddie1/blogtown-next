@@ -42,7 +42,7 @@ export default function useCategories() {
             const data = await getCategories();
             setState(data);
         })();
-    }, []);
+    });
 
     const isLoading = useMemo(() => {
         return state === undefined;

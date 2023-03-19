@@ -14,7 +14,6 @@ export default function ReactDown({ markdown }: Props) {
         <div className="blog-container card">
             <div className="blog p-2 p-lg-4">
                 <ReactMarkdown 
-                    children={markdown} 
                     remarkPlugins={[remarkGfm]}
                     components={{
                         em: ({ node, ...props}) => <i style={{color: 'blue'}} {...props} />,
@@ -30,7 +29,6 @@ export default function ReactDown({ markdown }: Props) {
                             const match = /language-(\w+)/.exec(className || '')
                             return !inline && match ? (
                             <SyntaxHighlighter
-                                children={String(children).replace(/\n$/, '')}
                                 style={{
                                     ...tomorrow,
                                     fontSize: '1.4em'
@@ -45,7 +43,9 @@ export default function ReactDown({ markdown }: Props) {
                                         fontSize: '1.0em'
                                     }
                                 }}
-                            />
+                            >
+                                {String(children).replace(/\n$/, '')}
+                            </SyntaxHighlighter>
                             ) : (
                             <code className={className} {...props}>
                                 {children}
@@ -53,7 +53,9 @@ export default function ReactDown({ markdown }: Props) {
                             )
                         }
                     }}
-                />         
+                >         
+                    {markdown}
+                </ReactMarkdown>
             </div>
         </div>
     )

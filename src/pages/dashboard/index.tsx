@@ -44,7 +44,7 @@ export default function Dashboard(props: Props) {
 
                 return setBlogs(blogs.data);
         })();
-    }, []);
+    });
 
     return (
         <ProtectedRoute>

@@ -24,7 +24,7 @@ export default function About() {
                                 topics. We will also be posting web development tutorials and guides.
                             </p>
                             <p>
-                                Whether you're a seasoned traveler or just starting out on your journey, 
+                                Whether you&apos;re a seasoned traveler or just starting out on your journey, 
                                 Blogtown is the perfect place to find inspiration and information. Our 
                                 content ranges from destination guides and travel tips.
                             </p>

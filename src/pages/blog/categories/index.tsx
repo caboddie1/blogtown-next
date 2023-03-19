@@ -6,12 +6,25 @@ import CategoriesContent from '@/components/blog/categories/categoriesContent';
 
 import useCategories from '@/hooks/getCategories';
 import Head from 'next/head';
+import { FetchCategories, getCategories } from '@/api/categories';
 
-export default function Categories() {
+export async function getStaticProps() {
+	const categoryData = await getCategories();
 
-    const { state, isLoading } = useCategories()
+	return {
+		props: {
+			categoryData
+		}
+	}
 
+}
 
+interface Props {
+	categoryData: FetchCategories;
+}
+
+export default function Categories({ categoryData }: Props) {
+    
     return (
         <>
             <Head>
@@ -21,15 +34,14 @@ export default function Categories() {
                     content="Browse the different categories of blogs that Blogtown has to offer"
                 />
             </Head>
-            <Loading
-                isLoading={isLoading}
-            >
-                {state?.data &&
+                {categoryData.data && categoryData.error === '' &&
                     <CategoriesContent 
-                        categories={state?.data}
+                        categories={categoryData.data}
                     />
                 }
-            </Loading>
+                {categoryData.error !== '' &&
+                    <p>{categoryData.error}</p>
+                }
         </>
     )
 }
