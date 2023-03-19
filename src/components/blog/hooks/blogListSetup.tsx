@@ -32,14 +32,14 @@ export default function useBlogListSetup() {
         setCategory(String(router.query.id || ''));
     }, [router.query]);
 
-    useEffect(() => {
+    (function() {
         // When category is false redirect to all
         // Can be undefined so specific check is required
         if (categoryIsValid === false) {
             router.push('/blogs/categories/all');
             return;
         }
-    }, [categoryIsValid]);
+    })();
 
     useEffect(() => {
         if (!categoryIsValid) return;
@@ -55,7 +55,7 @@ export default function useBlogListSetup() {
             setError('Error fetching blogs, please refresh the page and try again.');
         })();
 
-    }, [category, categoryIsValid]);
+    }, [category, categoryIsValid, getBlogsPublished]);
 
     const categoryLabel = useMemo(() => {
         if (typeof category !== 'string') return;

@@ -36,6 +36,7 @@ export default function ResponsiveImage({ maxHeight = null, center = false, ...i
                 <Image
                     {...{
                         ...imageProps,
+                        alt: imageProps.alt,
                         ...getImageDimensions(width),
                         onLoadingComplete: ({ naturalWidth, naturalHeight }) => {
                             const ratio = naturalWidth / naturalHeight;

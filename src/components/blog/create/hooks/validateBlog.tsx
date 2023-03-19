@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import { FirebaseBlogData, FormError, FormErrorAction, FormItem, FormItemStateAction, FormItemStateType, FormState } from "../form/types";
 
 
@@ -26,7 +26,7 @@ export default function useValidateBlog({ formItems, onBlogSave, form: { state, 
 
     const [errorState, errorDispatch] = useReducer(errorReducer, []);
 
-    function validate(): FormError[] {
+    const validate = useCallback((): FormError[] => {
         return formItems
             .filter(item => {
                 if (item.input.type === 'single') {
@@ -53,7 +53,7 @@ export default function useValidateBlog({ formItems, onBlogSave, form: { state, 
                     label: item.label
                 } as FormError
             })
-    }
+    }, [formItems, state]);
 
     function save() {
         const errors = validate();
@@ -82,7 +82,7 @@ export default function useValidateBlog({ formItems, onBlogSave, form: { state, 
         if (errorState.length === 0) return;
         const errors = validate();
         errorDispatch({ type: 'SET_ERRORS', payload: errors })
-    }, [state]);
+    }, [state, errorState.length, validate]);
 
     return {
         errors: errorState,

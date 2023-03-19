@@ -30,8 +30,7 @@ export default function ReactDown({ markdown }: Props) {
                             return !inline && match ? (
                             <SyntaxHighlighter
                                 style={{
-                                    ...tomorrow,
-                                    fontSize: '1.4em'
+                                    ...tomorrow as any,
                                 }}
                                 language={match[1]}
                                 PreTag="div"
