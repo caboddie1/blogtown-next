@@ -6,6 +6,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import CreateBlogContent from './createBlogContent';
 import CreateBlogContentTestWrapper from './createBlogContent';
+import { formItems } from './form/formItems';
 
 export default {
   /* 👇 The title prop is optional.
@@ -20,10 +21,16 @@ const common = {
 }
 
 const Template: ComponentStory<typeof CreateBlogContent> = (args) => (
+	<>
+		{console.log(args)}
     <CreateBlogContent { ...args } />
+	</>
 )
 
 export const Primary = Template.bind({})
+Primary.args = {
+	formItems
+}
 
 export const DefaultValues = Template.bind({})
 DefaultValues.args = {
@@ -58,6 +65,7 @@ DefaultValues.args = {
 				{ id: 'JavaScript', tag: 'JavaScript' },
 				{ id: 'PHP', tag: 'PHP' },
 			]
-		}
-	}
+		},
+	},
+	formItems: formItems
 }

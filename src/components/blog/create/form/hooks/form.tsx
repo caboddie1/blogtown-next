@@ -38,6 +38,7 @@ function getInitialValue(type: InputTypes) {
 export default function useForm({ formItems, defaultValues }: Props) {
 
     function getInitialState() {
+        console.log(formItems)
         return formItems.reduce((prev, { name, input }) => ({
             ...prev,
             [name]: {

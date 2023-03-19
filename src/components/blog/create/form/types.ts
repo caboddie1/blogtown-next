@@ -1,6 +1,6 @@
 import { BackdropProps } from "@mui/material";
 import { MultiValue, SingleValue } from "react-select";
-import { CategoryOption, Tag } from "../types";
+import { CategoryOption, Tag } from "@/components/blog/types";
 
 export type InputTypes = 'text' | 'checkbox' | 'multi' | 'single';
 

@@ -15,7 +15,6 @@ interface Props {
 
 export default function CreateBlogContent({ defaultValues, onBlogSave, formItems }: Props) {
 
-
     const { state, dispatch } = useForm({ formItems, defaultValues });
 
     const {         
