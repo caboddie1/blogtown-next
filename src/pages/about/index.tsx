@@ -8,7 +8,7 @@ export default function About() {
     return (
         <>
             <Head>
-                <title>About Blog Town</title>
+                <title>Blogtown - About</title>
                 <meta name="description" content="Learn more about the author of the blog and the different types of posts that are going to be uploaded" />
             </Head>
             <CentreVertical maxWidth={950}>

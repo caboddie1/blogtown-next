@@ -173,7 +173,7 @@ export default function useSaveBlog() {
             // set loading to false
             setLoading(false);
         })();
-    }, []);
+    });
 
     return {
         defaultValues,

@@ -10,6 +10,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/blog/categories',
+        permanent: true,
+      },
+    ]
+  },
   reactStrictMode: true,
 }
 

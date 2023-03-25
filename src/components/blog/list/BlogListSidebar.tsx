@@ -1,6 +1,5 @@
 import React from 'react'
 import { ListGroup, ListGroupItem } from 'reactstrap'
-import { BlogProvider } from '../../../contexts/BlogContext'
 import { Blog } from '../types'
 
 interface Props {

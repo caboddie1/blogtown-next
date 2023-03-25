@@ -1,6 +1,6 @@
 import { MultiValue, SingleValue } from "react-select";
 import { FormItem } from "./types";
-import { CategoryOption, Tag } from "../types";
+import { CategoryOption, Tag } from "@/components/blog/types";
 
 export const formItems: FormItem[] = [
     { 

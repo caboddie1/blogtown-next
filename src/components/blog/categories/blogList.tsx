@@ -9,9 +9,10 @@ import BlogList from '../list/blogList';
 
 export default function BlogListWrapper() {
 
-	const { blogs, error, category, isLoadingBlogs } = useBlogListSetup()
+	//const { blogs, error, category, isLoadingBlogs } = useBlogListSetup()
 
-    return (
+	return (<></>)
+    /*return (
 		<Container>
 			<Loading isLoading={isLoadingBlogs}>
 				{blogs &&
@@ -26,7 +27,7 @@ export default function BlogListWrapper() {
 			</Loading>
             <TikTok />
 		</Container>
-    )
+    )*/
 }
 
 const Error = styled.div(() => ({

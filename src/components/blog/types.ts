@@ -1,3 +1,4 @@
+import { ParsedUrlQuery } from "querystring";
 import { MultiValue } from "react-select";
 
 export interface CategoryOption {
