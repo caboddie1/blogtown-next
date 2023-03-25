@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Container, Row, Col, Button } from 'reactstrap';
-import queryString from 'query-string';
 import moment from 'moment';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,39 +7,53 @@ import { useRouter } from 'next/router';
 import { Blog as BlogInterface } from '@/components/blog/types';
 import ReactDown from '@/components/reactDown';
 import { useAuth } from '@/contexts/authContext';
-import useFetchBlogs from '@/hooks/getBlogs';
+import useFetchBlogs, { FetchBlogs } from '@/hooks/getBlogs';
 import { generateBreadcrumb } from '@/components/helpers/breadcrumb/utils';
 import Breadcrumb from '@/components/helpers/breadcrumb';
 import TikTok from '@/components/socialFeeds/tikTok';
 import Head from 'next/head';
+import { getBlogByUrl, getBlogsPublished } from '@/api/blogs';
+import { GetStaticProps } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 
-export default function Blog() {
+interface Props {
+    blog: BlogInterface | null;
+}
 
-    const [ blog, setBlog ] = useState<BlogInterface>();
-    const [error, setError] = useState<string>('');
-    const { isAdmin } = useAuth();
-    const router = useRouter();
-    const params = router.query;
-    const id: string | null = params.id ? String(params.id) : null;
+interface Params extends ParsedUrlQuery {
+    id: string;
+}
 
-    const { getBlogByUrl } = useFetchBlogs();
+export const getStaticProps: GetStaticProps<Props, Params> = async ({ params } ) => {
+    const result = await getBlogByUrl(params?.id!)
+    const blog = result.data.length > 0 ? result.data[0] : null;
 
-    useEffect(() => {
-        (async function() {
-            if (id !== null) {
-                const blog = await getBlogByUrl(String(id || ''));
+    return {
+        props: {
+            blog: blog
+        }
+    }
+}
 
-                if (blog.status !== 200 || blog.data.length === 0) {
-                    return setError(blog.error);
-                }
+export async function getStaticPaths() {
 
-                setBlog(blog.data[0]);
+	const blogs = await getBlogsPublished({ published: true, category: 'all' })
 
-            } else {
-                setError('Error - unable to find blog');
+    return {
+        paths: blogs.data.map(blog => ({
+            params: {
+                id: blog.url
             }
-        })();
-    });
+        })),
+        fallback: false
+    }
+}
+
+
+export default function Blog({ blog }: Props) {
+
+    const { isAdmin } = useAuth();
+
 
     const breadcrumbs = useMemo(() => {
         if (!blog) return []
@@ -54,7 +67,7 @@ export default function Blog() {
             {blog &&
                 <>
                     <Head>
-                        <title>{blog.title}</title>
+                        <title>Blogtown - {blog.title}</title>
                         <meta name="description" content={blog.description} />
                     </Head>
                     <Container>
@@ -72,7 +85,7 @@ export default function Blog() {
                                 }
                             </Col>
                             <Col sm={12} className="px-0 px-lg-3">
-                                {blog && 
+                                {blog ?
                                     <article>
                                         <div className="card p-2 p-lg-3 mb-3">
                                             <h1>{blog.title} </h1>
@@ -87,17 +100,15 @@ export default function Blog() {
                                             <ReactDown markdown={blog.content} />
                                         </div>
                                     </article>
+                                :
+                                    <p>Error fetching blog</p>
                                 }
                             </Col>
                         </Row>
-                        {error && <p>{error}</p>}
 
                         <TikTok />
                     </Container>
                 </>
-            }
-            {error !== '' &&
-                <p>{error}</p>
             }
         </>
     )
