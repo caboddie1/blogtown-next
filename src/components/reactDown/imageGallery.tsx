@@ -63,7 +63,10 @@ export default function ImageGallery({ images }: Props) {
 
     return (
         <div className="img-gallery mt-3 mb-5">
-            <div className="current-img mb-2 position-relative text-center" style={{ height: 600}}>
+            <div 
+                className="current-img mb-2 position-relative text-center" 
+                style={{ maxHeight: 600}}
+            >
                 <button 
                     className="btn border"
                     onClick={onLeftButtonClick} 
