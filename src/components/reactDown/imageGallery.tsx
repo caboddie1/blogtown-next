@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import React, { useState, useMemo, useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
+import ResponsiveImage from '../responsiveImage/responsiveImage';
 
 export interface Image {
     id: number;
@@ -62,7 +63,7 @@ export default function ImageGallery({ images }: Props) {
 
     return (
         <div className="img-gallery mt-3 mb-5">
-            <div className="current-img mb-2 position-relative text-center">
+            <div className="current-img mb-2 position-relative text-center" style={{ height: 600}}>
                 <button 
                     className="btn border"
                     onClick={onLeftButtonClick} 
@@ -79,7 +80,11 @@ export default function ImageGallery({ images }: Props) {
                 >
                     <FontAwesomeIcon icon={faChevronRight} />
                 </button>
-                <img src={currentImg.src} alt={currentImg.alt} style={{ maxWidth: '100%', maxHeight: '70vh'}} />            
+                <ResponsiveImage 
+                    maxHeight={600}
+                    src={currentImg.src} 
+                    alt={currentImg.alt} 
+                />            
             </div>
             <div className="pause text-center mb-3">
                 <button 
@@ -111,16 +116,17 @@ export default function ImageGallery({ images }: Props) {
                         style={ { ...{ 
                             height: 120,
                             overflow: 'hidden',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            textAlign: 'center'
                         }, ...(image.id !== currentImg.id ? {} : {
                             border: '2px solid #777'
                         }) }}
                     >
-                        <Image 
+                        <ResponsiveImage 
                             src={image.src} 
                             alt={image.alt} 
                             className="img-thumbnail" 
-                            fill
+                            maxHeight={120}
                         />
                     </Col>
                 ))}

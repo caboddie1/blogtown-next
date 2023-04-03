@@ -15,6 +15,7 @@ import Head from 'next/head';
 import { getBlogByUrl, getBlogsPublished } from '@/api/blogs';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import styled from '@emotion/styled';
 
 interface Props {
     blog: BlogInterface | null;
@@ -86,7 +87,7 @@ export default function Blog({ blog }: Props) {
                             </Col>
                             <Col sm={12} className="px-0 px-lg-3">
                                 {blog ?
-                                    <article>
+                                    <Article>
                                         <div className="card p-2 p-lg-3 mb-3">
                                             <h1>{blog.title} </h1>
                                             <p className="secondary-text">
@@ -99,7 +100,7 @@ export default function Blog({ blog }: Props) {
                                         <div>
                                             <ReactDown markdown={blog.content} />
                                         </div>
-                                    </article>
+                                    </Article>
                                 :
                                     <p>Error fetching blog</p>
                                 }
@@ -113,3 +114,6 @@ export default function Blog({ blog }: Props) {
         </>
     )
 }
+
+const Article = styled.article(() => ({
+}))

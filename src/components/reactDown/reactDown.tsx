@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm';
 import {Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ListParser from './listParser';
+import ResponsiveImage from '../responsiveImage/responsiveImage';
 
 interface Props {
     markdown: string;
@@ -22,6 +23,19 @@ export default function ReactDown({ markdown }: Props) {
                             <>
                                 <li className="list-group-item" {...props}/>
                             </>
+                        ),
+                        img: ({ node, ...props }) => (
+                            <div 
+                                className="blog-img text-center mt-3"
+                                style={{maxHeight: 600 }}
+                            >
+                                <ResponsiveImage 
+                                    {...{
+                                        ...props as any,
+                                        maxHeight: 600
+                                    }}
+                                />
+                            </div>
                         ),
                         table: ({ node, ...props }) => <table className="table" { ...props } />,
                         thead: ({ node, ...props }) => <thead className="thead-dark" { ...props } />,
