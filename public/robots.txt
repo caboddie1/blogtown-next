@@ -1,0 +1,12 @@
+# Block all crawlers for protected routes
+User-agent: *
+Disallow: /dashboard
+Disallow: /user/update-profile
+Disallow: /blog/create
+Disallow: /auth/login
+Disallow: /auth/signup
+Disallow: /auth/forgot-password
+
+# Allow all crawlers
+User-agent: *
+Allow: /

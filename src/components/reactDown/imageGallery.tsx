@@ -1,5 +1,6 @@
 import { faChevronLeft, faChevronRight, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import React, { useState, useMemo, useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
 
@@ -105,7 +106,7 @@ export default function ImageGallery({ images }: Props) {
                         sm={6}
                         xs={6}
                         key={image.id} 
-                        className="mb-2"
+                        className="mb-2 position-relative"
                         onClick={() => setCurrentImg(image)}
                         style={ { ...{ 
                             height: 120,
@@ -115,7 +116,12 @@ export default function ImageGallery({ images }: Props) {
                             border: '2px solid #777'
                         }) }}
                     >
-                        <img src={image.src} alt={image.alt} className="img-thumbnail" />
+                        <Image 
+                            src={image.src} 
+                            alt={image.alt} 
+                            className="img-thumbnail" 
+                            fill
+                        />
                     </Col>
                 ))}
             </Row>

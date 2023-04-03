@@ -11,8 +11,7 @@ const config = {
     appId: process.env.FIREBASE_APPID,
 }
 
-
-const app = initializeApp(config, 'Blogtown-nextjs');
+const app = initializeApp(config);
 
 export const auth = getAuth(app) as Auth;
 export default app;
