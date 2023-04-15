@@ -19,12 +19,13 @@ const dropdownCategories: IMenuItem[] = categories.map(category => ({
 interface GenerateBreadcrumbArgs {
     category?: string;
     blog?: string;
+    showAll?: boolean;
 }
 
-export const generateBreadcrumb = ({ category, blog}: GenerateBreadcrumbArgs) => {
+export const generateBreadcrumb = ({ category, blog, showAll }: GenerateBreadcrumbArgs) => {
     return [
         <span key="b_1">Blogs</span>,
-        <Link key="b_2" href="/blog/categories">
+        <Link key="b_2" href="/">
             Categories
         </Link>,
         ...(!category) ? [] : [
@@ -32,7 +33,7 @@ export const generateBreadcrumb = ({ category, blog}: GenerateBreadcrumbArgs) =>
                 key="b_3"
                 {...{
                     buttonLabel: category,
-                    items: dropdownCategories.filter(item => category !== item.label)
+                    items: dropdownCategories.filter(item => showAll ? true : category !== item.label)
                 }}
             />,
         ],

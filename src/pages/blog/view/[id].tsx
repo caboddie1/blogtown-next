@@ -60,7 +60,7 @@ export default function Blog({ blog }: Props) {
         if (!blog) return []
         const { title, category } = blog;
 
-        return generateBreadcrumb({ category: String(category?.category || 'All'), blog: title })
+        return generateBreadcrumb({ category: String(category?.category || 'All'), blog: title, showAll: true })
     }, [blog])
 
     return (
