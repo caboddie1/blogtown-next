@@ -5,8 +5,6 @@ import CentreVertical from '@/components/helpers/centreVertical';
 import { Category } from './types';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ParentSize } from '@visx/responsive';
 import ResponsiveImage from '@/components/responsiveImage/responsiveImage';
 
 interface Props {

@@ -8,30 +8,30 @@ function generateSiteMap(posts: string[], categories: string[]) {
     return `<?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             <url>
-            <loc>https://blogtown.co.uk/blogs/categories</loc>
+                <loc>https://blogtown.co.uk</loc>
             </url>
             <url>
-            <loc>https://blogtown.co.uk/about</loc>
+                <loc>https://blogtown.co.uk/about</loc>
             </url>
-            ${posts
-                .map((id) => {
-                    return `
-                        <url>
-                            <loc>${`${POSTS_URL}/${id}`}</loc>
-                        </url>
-                    `;
-                })
-            .join('')}
-            ${categories
-                .map((id) => {
-                    return `
-                        <url>
-                            <loc>${`${CATEGORIES_URL}/${id}`}</loc>
-                        </url>
-                    `;
-                })
-            .join('')}
-        </urlset>
+        ${posts
+            .map((id) => {
+                return `
+                    <url>
+                        <loc>${`${POSTS_URL}/${id}`}</loc>
+                    </url>
+                `;
+            })
+        .join('')}
+        ${categories
+            .map((id) => {
+                return `
+                    <url>
+                        <loc>${`${CATEGORIES_URL}/${id}`}</loc>
+                    </url>
+                `;
+            })
+        .join('')}
+    </urlset>
     `;
 }
 

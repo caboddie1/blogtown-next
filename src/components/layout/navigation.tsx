@@ -38,7 +38,7 @@ export default function Navigation() {
                 expand="md"
             >
                 <NavbarToggler onClick={toggleIsOpen}></NavbarToggler>
-                <NavbarBrand href="/blog/categories" tag={Link}>
+                <NavbarBrand href="/" tag={Link}>
                     Blog Town
                 </NavbarBrand>
                 <Collapse navbar isOpen={isOpen}>
@@ -52,7 +52,7 @@ export default function Navigation() {
                             </NavItem>
                         }
                         <NavItem>
-                            <NavLink tag={Link} href="/blog/categories">Blogs</NavLink>
+                            <NavLink tag={Link} href="/">Blogs</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} href="/about">About</NavLink>
